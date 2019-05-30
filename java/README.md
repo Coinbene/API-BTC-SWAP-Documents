@@ -1,6 +1,1 @@
-Liquid toolbox:
-. facade
-. adapter
-. exchange
-> coinbene
-> fcoin
+CoinBene swap openapi java sample code
