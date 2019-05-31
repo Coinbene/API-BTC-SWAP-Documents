@@ -5,4 +5,4 @@ coinbene swap openapi document v2.0
 * [REST English Document](https://github.com/Coinbene/API-SWAP-Documents/blob/master/openapi-swap-rest-en.md)
 
 * SDK
- * [kotiln](https://github.com/Coinbene/API-SWAP-SDK/tree/master/kotlin)
+  * [kotiln](https://github.com/Coinbene/API-SWAP-SDK/tree/master/kotlin)
