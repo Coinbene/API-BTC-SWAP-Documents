@@ -68,9 +68,9 @@ Sample interface request:
 - Two cases of GET protocol interface:
 ```
 1. Without parameters:
-preHash String：2019-03-08T10:59:25.789ZGET/account/list
+preHash String：2019-05-21T11:14:16.161ZGET/api/swap/v2/market/tickers
 2. With parameters:
-preHash String：2019-03-08T10:59:25.789ZGET/account/list?symbol=BTCUSDT
+preHash String：2019-05-21T11:10:28.464ZGET/api/swap/v2/market/orderBook?symbol=ETHUSDT&size=10
 ```
 
 
