@@ -1079,7 +1079,7 @@ HTTP GET/api/swap/v2/order/fills
 ```
 Request parameters:
 
-Name | Type | Required / Description
+Name | Type | Required | Description
 ---------|---------|---------|---------|
 Symbol | string | yes | contract name, such as BTCUSDT
 orderId | string | yes | orderId
@@ -1164,7 +1164,7 @@ HTTP GET/api/swap/v2/order/fills
 ```
 Request parameters:
 
-Name | Type | Required / Description
+Name | Type | Required | Description
 ---------|---------|---------|---------|
 pageNum | string | no | default value of 1, indicating the first page begins
 pageSize | string | no | default value 10, number of records returned per page
