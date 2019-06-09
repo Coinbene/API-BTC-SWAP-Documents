@@ -17,7 +17,7 @@
   * [Private Interface - Get  order information](#private-interface---get--order-information)
   * [Private Interface - Query History Order](#private-interface---query-history-order)
   * [Private Interface - Cancel multiple Orders](#private-interface---cancel-multiple-orders)
-  * [Private Interface - Get the specified order transaction details](#Private Interface---get the specified order)
+  * [Private Interface - Get the specified order transaction details](#private interface---get the specified order)
   * [Private Interface - Get a list of funding rates](#private-interface---get a list of funding rates)
 * [Error Code Summary](#error-code-summary)
 
