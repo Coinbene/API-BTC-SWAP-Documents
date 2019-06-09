@@ -697,7 +697,7 @@ Response:
 
 ```
 按用户输入进行下单操作
-限速规则：10次/2秒
+限速规则：20次/2秒
 HTTP POST/api/swap/v2/order/place
 ```
 请求参数：
@@ -754,7 +754,7 @@ Response:
 
 ```
 按用户输入进行撤单操作
-限速规则：10次/2秒
+限速规则：20次/2秒
 HTTP POST/api/swap/v2/order/cancel
 ```
 请求参数：
@@ -1090,6 +1090,163 @@ Response:
   ]
 }
 ```
+
+### 私有接口-获取指定订单成交明细
+
+```
+按用户输入进行撤单操作
+限速规则：10次/2秒
+HTTP GET/api/swap/v2/order/fills
+```
+
+请求参数：
+
+名称  | 类型  | 是否必填  | 说明
+---------|---------|---------|---------|
+symbol      | string | 是 | 合约名称，如BTCUSDT
+orderId      | string | 是 | 订单Id
+lastTradeId      | string | 否 | 成交Id，分页使用，每页固定20条，默认0返回最新20条
+
+返回字段说明：
+
+名称   | 类型  | 说明
+---------|---------|---------|
+orderId   | string | 订单Id
+direction   | string | 订单方向
+leverage   | string | 杠杆倍数
+symbol   | string | 合约名称，如BTCUSDT
+orderType   | string | 订单类型，限价=limit 市价=market
+quantity   | string | 订单数量（张）
+orderPrice   | string | 订单价格
+orderValue   | string | 订单价值
+fee   | string | 手续费
+filledQuantity   | string | 订单已成交数量（张）
+averagePrice   | string | 订单平均价格
+orderTime   | string | 订单时间
+status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完全撤单,partiallyFilled:部分撤单）
+
+```
+Request:
+Url: http://172.20.20.156:9320/api/swap/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+Method: GET
+Headers: 
+	Accept: application/json
+	ACCESS-KEY: 978672ddedbd1c5340a83a277b2ac654
+	ACCESS-SIGN: d279f3c59f38cf2c4b25862aa43bf81aa4b5783fab193b2a1683d5be81c3823a
+	ACCESS-TIMESTAMP: 2019-06-09T04:14:18.213Z
+	Content-Type: application/json; charset=UTF-8
+	Cookie: locale=zh_CN
+Body: 
+preHash: 2019-06-09T04:14:18.213ZGET/api/swap/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+
+Response:		
+{
+  "code": 200, 
+  "data": [
+    {
+      "orderId": "580719990266232832", 
+      "direction": "openLong", 
+      "leverage": "20", 
+      "symbol": "ETHUSDT", 
+      "orderType": "limit", 
+      "quantity": "7", 
+      "orderPrice": "147.70", 
+      "orderValue": "0.0010", 
+      "fee": "0.0000", 
+      "filledQuantity": "0", 
+      "averagePrice": "0.00", 
+      "orderTime": "2019-05-22T03:33:55.0Z", 
+      "status": "canceled"
+    }, 
+    {
+      "orderId": "580719596848906240", 
+      "direction": "openLong", 
+      "leverage": "20", 
+      "symbol": "ETHUSDT", 
+      "orderType": "limit", 
+      "quantity": "2", 
+      "orderPrice": "146.05", 
+      "orderValue": "0.0003", 
+      "fee": "0.0000", 
+      "filledQuantity": "0", 
+      "averagePrice": "0.00", 
+      "orderTime": "2019-05-22T03:32:21.0Z", 
+      "status": "canceled"
+    }
+  ]
+}
+```
+
+### 私有接口-获取资金费率列表
+
+```
+按用户输入进行撤单操作
+限速规则：10次/2秒
+HTTP GET/api/swap/v2/order/fills
+```
+
+请求参数：
+
+名称  | 类型  | 是否必填  | 说明
+---------|---------|---------|---------|
+pageNum      | string | 否 | 默认值1，表示第一页开始
+pageSize      | string | 否 | 默认值10，每页返回记录条数
+
+返回字段说明：
+
+名称   | 类型  | 说明
+---------|---------|---------|
+symbol   | string | 合约名称，如BTCUSDT
+side   | string | 方向
+markPrice   | string | 标记价格
+positionValue   | string | 仓位价值
+fee   | string | 手续费
+feeRate   | string | 费率
+time   | string | 收取时间
+leverage   | string | 杠杆倍数
+
+```
+Request:
+Url: http://172.20.20.156:9320/api/swap/v2/position/feeRate?pageNum=1&pageSize=2
+Method: GET
+Headers: 
+	Accept: application/json
+	ACCESS-KEY: 978672ddedbd1c5340a83a277b2ac654
+	ACCESS-SIGN: 8a0fc6ee1d39c95100c00ea42ba2033d8a33a644d53150e1851e1fff04e1f536
+	ACCESS-TIMESTAMP: 2019-06-09T04:22:06.355Z
+	Content-Type: application/json; charset=UTF-8
+	Cookie: locale=zh_CN
+Body: 
+preHash: 2019-06-09T04:22:06.355ZGET/api/swap/v2/position/feeRate?pageNum=1&pageSize=2
+
+Response:		
+{
+  "code": 200, 
+  "data": [
+    {
+      "symbol": "BTCUSDT", 
+      "side": "short", 
+      "markPrice": "8086.5000", 
+      "positionValue": "0.1237", 
+      "fee": "0.0004637358", 
+      "feeRate": "0.003750", 
+      "time": "2019-05-31T09:00:00.0Z", 
+      "leverage": "20"
+    }, 
+    {
+      "symbol": "BTCUSDT", 
+      "side": "long", 
+      "markPrice": "8086.5000", 
+      "positionValue": "0.1237", 
+      "fee": "-0.0004637359", 
+      "feeRate": "0.003750", 
+      "time": "2019-05-31T09:00:00.0Z", 
+      "leverage": "20"
+    }
+  ]
+}
+```
+
 
 ## 错误代码汇总
 
