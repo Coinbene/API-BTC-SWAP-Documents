@@ -674,7 +674,7 @@ Response:
 
 ```
 Place an order,Trading only supports limit orders.
-Speed limit rule: 10 times per 2 seconds
+Speed limit rule: 20 times per 2 seconds
 HTTP POST/api/swap/v2/order/place
 ```
 Request parameters:
@@ -732,7 +732,7 @@ Response:
 
 ```
 Cancelling an unfilled order
-Speed limit rule: 10 times per 2 seconds
+Speed limit rule: 20 times per 2 seconds
 HTTP POST/api/swap/v2/order/cancel
 ```
 Request parameters:
