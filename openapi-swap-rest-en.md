@@ -17,6 +17,8 @@
   * [Private Interface - Get  order information](#private-interface---get--order-information)
   * [Private Interface - Query History Order](#private-interface---query-history-order)
   * [Private Interface - Cancel multiple Orders](#private-interface---cancel-multiple-orders)
+  * [Private Interface - Get the specified order transaction details](#private-interface---Get the specified order transaction details)
+  * [Private Interface - Get a list of funding rates](#private-interface---Get a list of funding rates)
 * [Error Code Summary](#error-code-summary)
 
 ## Basic Information
@@ -1066,6 +1068,161 @@ Response:
   ]
 }
 ```
+
+### Private Interface - Get the specified order transaction details
+
+```
+Cancel the order by user input
+Speed limit rule: 10 times per 2 seconds
+HTTP GET/api/swap/v2/order/fills
+```
+Request parameters:
+
+Name | Type | Required / Description
+---------|---------|---------|---------|
+Symbol | string | yes | contract name, such as BTCUSDT
+orderId | string | yes | orderId
+lastTradeId | string | no | deal Id, page break, fixed 20 per page, default 0 returns the latest 20
+
+Return field description:
+
+Name | Type | Description
+---------|---------|---------|
+orderId | string | Order Id
+Direction | string | order direction
+Leverage | string | leverage multiple
+Symbol | string | contract name, such as BTCUSDT
+orderType | string | order type, limit price = limit market price = market
+Quantity | string | Order Quantity (Zhang)
+orderPrice | string | order price
+orderValue | string | order value
+Fee | string | handling fee
+FillQuantity | string | Order Quantity (Zhang)
+averagePrice | string | Average order price
+orderTime | string | order time
+Status | string | Order status (new: pending order, filled: completed transaction, canceled: complete withdrawal, partialFilled: partial withdrawal)
+
+```
+Request:
+Url: http://172.20.20.156:9320/api/swap/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+Method: GET
+Headers:
+Accept: application/json
+ACCESS-KEY: 978672ddedbd1c5340a83a277b2ac654
+ACCESS-SIGN: d279f3c59f38cf2c4b25862aa43bf81aa4b5783fab193b2a1683d5be81c3823a
+ACCESS-TIMESTAMP: 2019-06-09T04:14:18.213Z
+Content-Type: application/json; charset=UTF-8
+Cookie: locale=zh_CN
+Body:
+preHash: 2019-06-09T04:14:18.213ZGET/api/swap/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+
+Response:
+{
+  "code": 200,
+  "data": [
+    {
+      "orderId": "580719990266232832",
+      "direction": "openLong",
+      "leverage": "20",
+      "symbol": "ETHUSDT",
+      "orderType": "limit",
+      "quantity": "7",
+      "orderPrice": "147.70",
+      "orderValue": "0.0010",
+      "fee": "0.0000",
+      "filledQuantity": "0",
+      "averagePrice": "0.00",
+      "orderTime": "2019-05-22T03:33:55.0Z",
+      "status": "canceled"
+    },
+    {
+      "orderId": "580719596848906240",
+      "direction": "openLong",
+      "leverage": "20",
+      "symbol": "ETHUSDT",
+      "orderType": "limit",
+      "quantity": "2",
+      "orderPrice": "146.05",
+      "orderValue": "0.0003",
+      "fee": "0.0000",
+      "filledQuantity": "0",
+      "averagePrice": "0.00",
+      "orderTime": "2019-05-22T03:32:21.0Z",
+      "status": "canceled"
+    }
+  ]
+}
+```
+
+### Private Interface - Get a list of funding rates
+
+```
+Cancel the order by user input
+Speed limit rule: 10 times per 2 seconds
+HTTP GET/api/swap/v2/order/fills
+```
+Request parameters:
+
+Name | Type | Required / Description
+---------|---------|---------|---------|
+pageNum | string | no | default value of 1, indicating the first page begins
+pageSize | string | no | default value 10, number of records returned per page
+
+Return field description:
+
+Name | Type | Description
+---------|---------|---------|
+Symbol | string | contract name, such as BTCUSDT
+Side | string | direction
+markPrice | string | tag price
+positionValue | string | position value
+Fee | string | handling fee
+feeRate | string | rate
+Time | string | charge time
+Leverage | string | leverage multiple
+
+```
+Request:
+Url: http://172.20.20.156:9320/api/swap/v2/position/feeRate?pageNum=1&pageSize=2
+Method: GET
+Headers:
+Accept: application/json
+ACCESS-KEY: 978672ddedbd1c5340a83a277b2ac654
+ACCESS-SIGN: 8a0fc6ee1d39c95100c00ea42ba2033d8a33a644d53150e1851e1fff04e1f536
+ACCESS-TIMESTAMP: 2019-06-09T04:22:06.355Z
+Content-Type: application/json; charset=UTF-8
+Cookie: locale=zh_CN
+Body:
+preHash: 2019-06-09T04:22:06.355ZGET/api/swap/v2/position/feeRate?pageNum=1&pageSize=2
+
+Response:
+{
+  "code": 200,
+  "data": [
+    {
+      "symbol": "BTCUSDT",
+      "side": "short",
+      "markPrice": "8086.5000",
+      "positionValue": "0.1237",
+      "fee": "0.0004637358",
+      "feeRate": "0.003750",
+      "time": "2019-05-31T09:00:00.0Z",
+      "leverage": "20"
+    },
+    {
+      "symbol": "BTCUSDT",
+      "side": "long",
+      "markPrice": "8086.5000",
+      "positionValue": "0.1237",
+      "fee": "-0.0004637359",
+      "feeRate": "0.003750",
+      "time": "2019-05-31T09:00:00.0Z",
+      "leverage": "20"
+    }
+  ]
+}
+```
+
 
 ## Error Code Summary
 
