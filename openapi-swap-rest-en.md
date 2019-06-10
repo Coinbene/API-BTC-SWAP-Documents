@@ -1029,7 +1029,7 @@ Request parameters:
 
 Name | Type | Required | Description
 ---------|---------|---------|---------|
-orderIds | list<string> | Yes | Order Id List
+orderIds | list<string> | Yes | Order Id List，Up to 10 order ids at a time
 
 Return field description:
 
