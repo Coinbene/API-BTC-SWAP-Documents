@@ -1053,7 +1053,7 @@ HTTP POST/api/swap/v2/order/batchCancel
 
 名称  | 类型  | 是否必填  | 说明
 ---------|---------|---------|---------|
-orderIds      | list<string> | 是 | 订单Id列表
+orderIds      | list<string> | 是 | 订单Id列表，每次最多10个订单id
 
 返回字段说明：
 
