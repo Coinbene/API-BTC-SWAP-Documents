@@ -686,6 +686,7 @@ direction | string | yes | direction
 leverage | string | yes | leverage multiple
 orderPrice | string | yes | order price
 quantity | string | yes | number of contracts bought or sold (number of sheets)
+marginMode | string | no | warehouse mode, default value crossed, fixed warehouse-by-warehouse crossed full warehouse
 clientId | string | no | user request id, transparently returned to the user
 
 
