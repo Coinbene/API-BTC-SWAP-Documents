@@ -711,6 +711,7 @@ direction      | string | 是 | 方向
 leverage      | string | 是 | 杠杆倍数
 orderPrice      | string | 是 | 下单价格
 quantity      | string | 是 | 买入或卖出合约数量（张数）
+marginMode      | string | 否 | 仓位模式，默认值crossed， fixed逐仓 crossed全仓
 clientId      | string | 否 | 用户请求id，透传返回给用户
 
 
