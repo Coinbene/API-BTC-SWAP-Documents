@@ -14,8 +14,10 @@
   * [Private Interface - Place an Order](#private-interface---place-an-order)
   * [Private Interface - Cancel an Order](#private-interface---cancel-an-order)
   * [Private Interface - Get  open orders](#private-interface---get--open-orders)
+  * [Private Interface - Get  Paging open orders by order ID](#private-interface---Paging the current open orders by order ID)
   * [Private Interface - Get  order information](#private-interface---get--order-information)
   * [Private Interface - Query History Order](#private-interface---query-history-order)
+  * [Private Interface - Query historical orders](#Private Interface---Query historical orders by order ID Pagination)
   * [Private Interface - Cancel multiple Orders](#private-interface---cancel-multiple-orders)
   * [Private Interface - Get the specified order transaction details](#private-interface---get-the-specified-order-transaction-details)
   * [Private Interface - Get a list of funding rates](#private-interface---get-a-list-of-funding-rates)
@@ -773,7 +775,7 @@ Response:
 
 ```
 Order list query by user request,
-Speed limit rule: 10 times per 2 seconds
+Speed limit rule: 5 times per 2 seconds
 HTTP GET/api/swap/v2/order/openOrders
 ```
 Request parameters:
@@ -823,6 +825,91 @@ Headers:
 	Cookie: locale=zh_CN
 Body: 
 preHash: 2019-05-22T03:40:14.396ZGET/api/swap/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
+
+Response:
+{
+  "code": 200, 
+  "data": [
+    {
+      "orderId": "580721369818955776", 
+      "direction": "openLong", 
+      "leverage": "20", 
+      "symbol": "ETHUSDT", 
+      "orderType": "limit", 
+      "quantity": "7", 
+      "orderPrice": "146.30", 
+      "orderValue": "0.0010", 
+      "fee": "0.0000", 
+      "filledQuantity": "0", 
+      "averagePrice": "0.00", 
+      "orderTime": "2019-05-22T03:39:24.0Z", 
+      "status": "new"
+    }, 
+    {
+      "orderId": "580721368082513920", 
+      "direction": "openLong", 
+      "leverage": "20", 
+      "symbol": "ETHUSDT", 
+      "orderType": "limit", 
+      "quantity": "6", 
+      "orderPrice": "145.90", 
+      "orderValue": "0.0009", 
+      "fee": "0.0000", 
+      "filledQuantity": "0", 
+      "averagePrice": "0.00", 
+      "orderTime": "2019-05-22T03:39:23.0Z", 
+      "status": "new"
+    }
+  ]
+}
+```
+
+### Private Interface - Paging the current list of delegation orders by order ID 
+
+```
+Order list query by user request,
+Speed limit rule: 5 times per 2 seconds
+HTTP GET/api/swap/v2/order/openOrdersByPage
+```
+Request parameters:
+
+Name | Type | Required | Description
+---------|---------|---------|---------|
+symbol | string | no | contract name, such as BTCUSDT
+latestOrderId | string | no | Order id, paging. The default is empty, returning the latest 20 data records
+
+
+Return field description:
+
+Name | Type | Description
+---------|---------|---------|
+orderId | string | Order Id
+direction | string | direction
+leverage | string | leverage multiple
+orderType | string | order type, limit price = limit market price = market
+quantity | string | Volume (number of sheets)
+orderPrice | string | order price
+orderValue | string | order value
+fee | string | handling fee
+fillQuantity | string | Volume (number of sheets)
+averagePrice | string | Average transaction price
+orderTime | string | order creation time
+status | string | Order Status(new,filled,canceled,partiallyFilled）
+
+
+```
+Request:
+Url: http://domain/api/swap/v2/order/openOrdersByPage
+Method: GET
+Headers: 
+	Accept: application/json
+	ACCESS-KEY: E65791902180E9EF4510DB6A77F6EBAE
+	ACCESS-SIGN: U4pKbDuOXqOqbQiqbHLAptEjTSpG7UYUrsbKZclJ5dU=
+	ACCESS-TIMESTAMP: 2019-05-22T03:40:14.396Z
+	Content-Type: application/json; charset=UTF-8
+	Cookie: locale=zh_CN
+Body: 
+preHash: 2019-05-22T03:40:14.396ZGET/api/swap/v2/order/openOrdersByPage
 
 Response:
 {
@@ -1019,6 +1106,95 @@ Response:
   ]
 }
 ```
+
+### Private Interface - Query historical orders by order ID Pagination
+
+```
+Query by user input
+Speed limit rule: 5 times per 2 seconds
+HTTP GET/api/swap/v2/order/closedOrdersByPage
+```
+
+Request parameters:
+
+Name | Type | Required | Description
+---------|---------|---------|---------|
+beginTime | string | no | start time, millisecond timestamp
+endTime | string | no | end time, millisecond timestamp
+symbol | string | no | contract name, such as BTCUSDT
+latestOrderId | string | no | Order id, paging. The default is empty, returning the latest 20 data records
+
+
+Return field description:
+
+Name | Type | Description
+---------|---------|---------|
+orderId | string | Order Id
+direction | string | direction
+leverage | string | leverage multiple
+orderType | string | order type, limit price = limit market price = market
+quantity | string | Volume (number of sheets)
+orderPrice | string | order price
+orderValue | string | order value
+fee | string | handling fee
+fillQuantity | string | Volume (number of sheets)
+averagePrice | string | Average transaction price
+orderTime | string | order creation time
+status | string | Order Status(new,filled,canceled,partiallyFilled）
+
+
+```
+Request:
+Url: http://domain/api/swap/v2/order/closedOrdersByPage
+Method: GET
+Headers: 
+	Accept: application/json
+	ACCESS-KEY: E65791902180E9EF4510DB6A77F6EBAE
+	ACCESS-SIGN: cA+ci0WdlF3fJMJlI+M4YtR2mYZSuBa+jgh+nPTe0AQ=
+	ACCESS-TIMESTAMP: 2019-05-22T04:03:41.607Z
+	Content-Type: application/json; charset=UTF-8
+	Cookie: locale=zh_CN
+Body: 
+preHash: 2019-05-22T04:03:41.607ZGET/api/swap/v2/order/closedOrdersByPage
+
+Response:
+{
+  "code": 200, 
+  "data": [
+    {
+      "orderId": "580719990266232832", 
+      "direction": "openLong", 
+      "leverage": "20", 
+      "symbol": "ETHUSDT", 
+      "orderType": "limit", 
+      "quantity": "7", 
+      "orderPrice": "147.70", 
+      "orderValue": "0.0010", 
+      "fee": "0.0000", 
+      "filledQuantity": "0", 
+      "averagePrice": "0.00", 
+      "orderTime": "2019-05-22T03:33:55.0Z", 
+      "status": "canceled"
+    }, 
+    {
+      "orderId": "580719596848906240", 
+      "direction": "openLong", 
+      "leverage": "20", 
+      "symbol": "ETHUSDT", 
+      "orderType": "limit", 
+      "quantity": "2", 
+      "orderPrice": "146.05", 
+      "orderValue": "0.0003", 
+      "fee": "0.0000", 
+      "filledQuantity": "0", 
+      "averagePrice": "0.00", 
+      "orderTime": "2019-05-22T03:32:21.0Z", 
+      "status": "canceled"
+    }
+  ]
+}
+```
+
 ### Private Interface - Cancel multiple Orders
 
 ```
