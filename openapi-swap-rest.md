@@ -15,8 +15,10 @@
   	* [私有接口-下单](#私有接口-下单)
   	* [私有接口-指定撤单](#私有接口-指定撤单)
   	* [私有接口-查询所有当前委托单列表](#私有接口-查询所有当前委托单列表)
+	* [私有接口-按订单ID分页查询当前委托单列表](#私有接口-按订单ID分页查询当前委托单列表)
  	* [私有接口-获取指定订单信息](#私有接口-获取指定订单信息)
   	* [私有接口-查询历史订单](#私有接口-查询历史订单)
+	* [私有接口-按订单ID分页查询历史订单](#私有接口-按订单ID分页查询历史订单)
   	* [私有接口-批量撤单](#私有接口-批量撤单)
 	* [私有接口-获取指定订单成交明细](#私有接口-获取指定订单成交明细)
 	* [私有接口-获取资金费率列表](#私有接口-获取资金费率列表)
@@ -886,6 +888,91 @@ Response:
 }
 ```
 
+### 私有接口-按订单ID分页查询当前委托单列表
+
+
+```
+按用户请求进行订单列表查询，
+限速规则：5次/2秒
+HTTP GET/api/swap/v2/order/openOrdersByPage
+```
+请求参数：
+
+名称  | 类型  | 是否必填  | 说明
+---------|---------|---------|---------|
+symbol      | string | 否 | 合约名称，如BTCUSDT
+latestOrderId      | string | 否 | 订单ID。默认为空，返回最新20条数据记录
+
+返回字段说明：
+
+名称   | 类型  | 说明
+---------|---------|---------|
+orderId   | string | 订单Id
+direction   | string | 方向
+leverage   | string | 杠杆倍数
+orderType   | string | 订单类型, 限价=limit 市价=market
+quantity   | string | 成交量（张）
+orderPrice   | string | 订单价格
+orderValue   | string | 订单价值
+fee   | string | 手续费
+filledQuantity   | string | 成交量（张）
+averagePrice   | string | 平均成交价格
+orderTime   | string | 订单创建时间
+status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完全撤单,partiallyFilled:部分撤单）
+
+
+```
+Request:
+Url: http://域名/api/swap/v2/order/openOrdersByPage
+Method: GET
+Headers: 
+	Accept: application/json
+	ACCESS-KEY: E65791902180E9EF4510DB6A77F6EBAE
+	ACCESS-SIGN: U4pKbDuOXqOqbQiqbHLAptEjTSpG7UYUrsbKZclJ5dU=
+	ACCESS-TIMESTAMP: 2019-05-22T03:40:14.396Z
+	Content-Type: application/json; charset=UTF-8
+	Cookie: locale=zh_CN
+Body: 
+preHash: 2019-05-22T03:40:14.396ZGET/api/swap/v2/order/openOrdersByPage
+
+Response:
+{
+  "code": 200, 
+  "data": [
+    {
+      "orderId": "580721369818955776", 
+      "direction": "openLong", 
+      "leverage": "20", 
+      "symbol": "ETHUSDT", 
+      "orderType": "limit", 
+      "quantity": "7", 
+      "orderPrice": "146.30", 
+      "orderValue": "0.0010", 
+      "fee": "0.0000", 
+      "filledQuantity": "0", 
+      "averagePrice": "0.00", 
+      "orderTime": "2019-05-22T03:39:24.0Z", 
+      "status": "new"
+    }, 
+    {
+      "orderId": "580721368082513920", 
+      "direction": "openLong", 
+      "leverage": "20", 
+      "symbol": "ETHUSDT", 
+      "orderType": "limit", 
+      "quantity": "6", 
+      "orderPrice": "145.90", 
+      "orderValue": "0.0009", 
+      "fee": "0.0000", 
+      "filledQuantity": "0", 
+      "averagePrice": "0.00", 
+      "orderTime": "2019-05-22T03:39:23.0Z", 
+      "status": "new"
+    }
+  ]
+}
+```
+
 ### 私有接口-获取指定订单信息
 
 ```
@@ -1043,6 +1130,95 @@ Response:
   ]
 }
 ```
+
+### 私有接口-按订单id分页查询历史订单
+
+```
+按用户输入进行查询操作
+限速规则：5次/2秒
+HTTP GET/api/swap/v2/order/closedOrders
+```
+
+请求参数：
+
+名称  | 类型  | 是否必填  | 说明
+---------|---------|---------|---------|
+beginTime      | string | 否 | 开始时间，毫秒级时间戳
+endTime      | string | 否 | 结束时间，毫秒级时间戳
+symbol      | string | 否 | 合约名称，如BTCUSDT
+latestOrderId      | string | 否 | 订单id。默认为空，返回最新20条数据记录
+
+
+返回字段说明：
+
+名称   | 类型  | 说明
+---------|---------|---------|
+orderId   | string | 订单Id
+direction   | string | 方向
+leverage   | string | 杠杆倍数
+orderType   | string | 订单类型，限价=limit 市价=market
+quantity   | string | 成交量（张）
+orderPrice   | string | 订单价格
+orderValue   | string | 订单价值
+fee   | string | 手续费
+filledQuantity   | string | 成交量（张）
+averagePrice   | string | 平均成交价格
+orderTime   | string | 订单创建时间
+status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完全撤单,partiallyFilled:部分撤单）
+
+
+```
+Request:
+Url: http://域名/api/swap/v2/order/closedOrdersByPage?symbol=&beginTime=1560658928499
+Method: GET
+Headers: 
+	Accept: application/json
+	ACCESS-KEY: 978672ddedbd1c5340a83a277b2ac654
+	ACCESS-SIGN: a342c5b9a9e0e39d33101bf81e99b6edf8cc42b2bb07fe4969e76f1f6e235994
+	ACCESS-TIMESTAMP: 2019-06-26T04:22:08.518Z
+	Content-Type: application/json; charset=UTF-8
+	Cookie: locale=zh_CN
+Body: 
+preHash: 2019-06-26T04:22:08.518ZGET/api/swap/v2/order/closedOrdersByPage?symbol=&beginTime=1560658928499
+
+Response:
+{
+  "code": 200, 
+  "data": [
+    {
+      "orderId": "580719990266232832", 
+      "direction": "openLong", 
+      "leverage": "20", 
+      "symbol": "ETHUSDT", 
+      "orderType": "limit", 
+      "quantity": "7", 
+      "orderPrice": "147.70", 
+      "orderValue": "0.0010", 
+      "fee": "0.0000", 
+      "filledQuantity": "0", 
+      "averagePrice": "0.00", 
+      "orderTime": "2019-05-22T03:33:55.0Z", 
+      "status": "canceled"
+    }, 
+    {
+      "orderId": "580719596848906240", 
+      "direction": "openLong", 
+      "leverage": "20", 
+      "symbol": "ETHUSDT", 
+      "orderType": "limit", 
+      "quantity": "2", 
+      "orderPrice": "146.05", 
+      "orderValue": "0.0003", 
+      "fee": "0.0000", 
+      "filledQuantity": "0", 
+      "averagePrice": "0.00", 
+      "orderTime": "2019-05-22T03:32:21.0Z", 
+      "status": "canceled"
+    }
+  ]
+}
+```
+
 ### 私有接口-批量撤单
 
 ```
