@@ -799,7 +799,7 @@ Response:
 
 ```
 按用户请求进行订单列表查询，
-限速规则：10次/2秒
+限速规则：5次/2秒
 HTTP GET/api/swap/v2/order/openOrders
 ```
 请求参数：
@@ -1136,7 +1136,7 @@ Response:
 ```
 按用户输入进行查询操作
 限速规则：5次/2秒
-HTTP GET/api/swap/v2/order/closedOrders
+HTTP GET/api/swap/v2/order/closedOrdersByPage
 ```
 
 请求参数：
