@@ -14,10 +14,10 @@
   * [Private Interface - Place an Order](#private-interface---place-an-order)
   * [Private Interface - Cancel an Order](#private-interface---cancel-an-order)
   * [Private Interface - Get  open orders](#private-interface---get--open-orders)
-  * [Private Interface - Get  Paging open orders by order ID](#private-interface---Paging the current open orders by order ID)
+  * [Private Interface - Paging the current list of delegation orders by order ID](#private-interface---paging-the-current-list-of-delegation-orders-by-order-id)
   * [Private Interface - Get  order information](#private-interface---get--order-information)
   * [Private Interface - Query History Order](#private-interface---query-history-order)
-  * [Private Interface - Query historical orders](#Private Interface---Query historical orders by order ID Pagination)
+  * [Private Interface - Query historical orders by order ID Pagination](#private-interface---query-historical-orders-by-order-id-pagination)
   * [Private Interface - Cancel multiple Orders](#private-interface---cancel-multiple-orders)
   * [Private Interface - Get the specified order transaction details](#private-interface---get-the-specified-order-transaction-details)
   * [Private Interface - Get a list of funding rates](#private-interface---get-a-list-of-funding-rates)
@@ -1454,4 +1454,3 @@ Error code | message
 10325| Order does not exist
 10326| Limit price cannot be empty
 10329| Entrusted to deal in {0} will result in a position margin loss to the minimum maintenance position margin level Please adjust the commission price or reduce the leverage
-
