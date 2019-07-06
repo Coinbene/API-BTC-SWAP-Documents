@@ -1454,3 +1454,4 @@ Error code | message
 10325| Order does not exist
 10326| Limit price cannot be empty
 10329| Entrusted to deal in {0} will result in a position margin loss to the minimum maintenance position margin level Please adjust the commission price or reduce the leverage
+10332 | Margin model error
