@@ -1337,7 +1337,7 @@ Response:
 ```
 Cancel the order by user input
 Speed limit rule: 10 times per 2 seconds
-HTTP GET/api/swap/v2/order/fills
+HTTP GET/api/swap/v2/position/feeRate
 ```
 Request parameters:
 
