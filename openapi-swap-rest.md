@@ -1361,7 +1361,7 @@ Response:
 ```
 按用户输入进行撤单操作
 限速规则：10次/2秒
-HTTP GET/api/swap/v2/order/fills
+HTTP GET/api/swap/v2/position/feeRate
 ```
 
 请求参数：
