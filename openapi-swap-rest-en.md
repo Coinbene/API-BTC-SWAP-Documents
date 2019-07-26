@@ -686,6 +686,7 @@ Name | Type | Required | Description
 symbol | string | yes | contract name, such as BTCUSDT
 direction | string | yes | direction
 leverage | string | yes | leverage multiple
+orderType | string | is the | order type, default to limit, and other enumeration values: postOnly (make only), FOK (Fill or Kill), IOC (Immediate Or Cancel)
 orderPrice | string | yes | order price
 quantity | string | yes | number of contracts bought or sold (number of sheets)
 marginMode | string | no | warehouse mode, default value crossed, fixed warehouse-by-warehouse crossed full warehouse
