@@ -711,6 +711,7 @@ HTTP POST/api/swap/v2/order/place
 symbol      | string | 是 | 合约名称，如BTCUSDT
 direction      | string | 是 | 方向
 leverage      | string | 是 | 杠杆倍数
+orderType      | string | 是 | 订单类型，默认为limit，其他枚举值：postOnly（只做maker）、fok（Fill or Kill）、ioc（Immediate Or Cancel）
 orderPrice      | string | 是 | 下单价格
 quantity      | string | 是 | 买入或卖出合约数量（张数）
 marginMode      | string | 否 | 仓位模式，默认值crossed， fixed逐仓 crossed全仓
