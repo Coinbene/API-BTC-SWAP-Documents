@@ -10,6 +10,7 @@
   	* [公共接口-获取全部ticker信息](#公共接口-获取全部ticker信息)
   	* [公共接口-获取K线数据](#公共接口-获取k线数据)
   	* [公共接口-查询最新成交信息](#公共接口-查询最新成交信息)
+	* [公共接口-获取当前合约最新资金费率](#公共接口-获取当前合约最新资金费率)
   	* [私有接口-查询合约账户信息](#私有接口-查询合约账户信息)
   	* [私有接口-合约持仓信息](#私有接口-合约持仓信息)
   	* [私有接口-下单](#私有接口-下单)
@@ -554,6 +555,40 @@ Response:
       "2019-05-21T08:25:22.735Z"
     ]
   ]
+}
+```
+
+### 公共接口-获取当前合约最新资金费率
+
+```
+获取当前合约最新资金费率
+限速规则：6次/1秒
+HTTP GET /api/swap/v2/market/fundingRate
+```
+请求参数：
+
+名称  | 类型  | 是否必填  | 说明
+---------|---------|---------|---------|
+symbol      | string | 是 | 合约名称，如BTCUSDT
+
+返回字段说明：无
+
+
+```
+Request:
+Url: http://域名/api/swap/v2/market/fundingRate?symbol=BTCUSDT
+Method: GET
+Headers: 
+	Accept: application/json
+	Content-Type: application/json; charset=UTF-8
+	Cookie: locale=zh_CN
+Body: 
+preHash: 2019-05-21T11:19:52.303ZGET/api/swap/v2/market/fundingRate?symbol=BTCUSDT
+
+Response:
+{
+  "code": 200, 
+  "data": "0.00375"
 }
 ```
 
