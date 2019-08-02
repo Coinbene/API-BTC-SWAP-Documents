@@ -1,5 +1,5 @@
-# CoinBene-Contract-WebSocket接口说明
-* [CoinBene-Contract-WebSocket接口说明](#coinbene-contract-websocket接口说明)
+# coinbene-swap-websocket接口说明
+* [coinbene-swap-websocket接口说明](#coinbene-contract-websocket接口说明)
      * [概述](#概述)
      * [指令格式](#指令格式)
      * [订阅](#订阅)
