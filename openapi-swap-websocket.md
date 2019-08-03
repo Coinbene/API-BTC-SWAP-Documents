@@ -1,24 +1,27 @@
-# coinbene-swap-websocket接口说明
-* [coinbene-swap-websocket接口说明](#coinbene-contract-websocket接口说明)
-     * [概述](#概述)
-     * [指令格式](#指令格式)
-     * [订阅](#订阅)
-     * [取消订阅](#取消订阅)
-     * [登录](#登录)
-     * [连接限制](#连接限制)
-          * [心跳消息](#心跳消息)
-          * [限频规则](#限频规则)
-     * [Topic说明](#topic说明)
-          * [公共Topic](#公共topic)
-          * [深度列表](#深度列表)
-          * [最新成交](#最新成交)
-          * [Ticker信息](#ticker信息)
-          * [K线数据](#k线数据)
-         * [私有Topic](#私有topic)
-          * [用户账户](#用户账户)
-          * [用户持仓](#用户持仓)
-          * [用户交易](#用户交易)
-     * [错误代码汇总](#错误代码汇总)
+# CoinBene-Contract-WebSocket接口说明
+
+[English](openapi-swap-websocket-en.md)
+
+- [CoinBene-Contract-WebSocket接口说明](#CoinBene-Contract-WebSocket接口说明)
+  * [概述](#概述)
+  * [指令格式](#指令格式)
+    * [订阅](#订阅)
+    * [取消订阅](#取消订阅)
+  * [登录](#登录)
+  * [连接限制](#连接限制)
+    + [心跳消息](#心跳消息)
+    + [限频规则](#限频规则)
+  * [Topic说明](#Topic说明)
+    + [公共Topic](#公共Topic)
+      - [深度列表](#深度列表)
+      - [最新成交](#最新成交)
+      - [Ticker信息](#Ticker信息)
+      - [K线数据](#K线数据)
+    + [私有Topic](#私有Topic)
+      - [用户账户](#用户账户)
+      - [用户持仓](#用户持仓)
+      - [用户交易](#用户交易)
+  * [错误代码汇总](#错误代码汇总)
 
 ## 概述
 
@@ -31,7 +34,7 @@ WebSocket是HTML5一种新的协议(Protocol)。它实现了客户端与服务�
 *强烈建议开发者使用WebSocket API获取市场行情和买卖深度等信息。*
 
 .地址
-`*wss://ws-contract.coinbene.vip/opeapi/ws*`
+`*wss://ws-contract.coinbene.vip/openapi/ws*`
 
 > * 访问地址需要具备科学上网环境
 > * 连接上ws后需主动处理服务端的`ping`检测消息,用于连接保活
@@ -73,9 +76,7 @@ WebSocket是HTML5一种新的协议(Protocol)。它实现了客户端与服务�
 {"event":"<value>","message":"<errorMessage>","code":"<errorCode>"}
 ```
 
-
-
-## 订阅
+### 订阅
 
 用户可以同时订阅一个或者多个Topic
 
@@ -100,7 +101,7 @@ WebSocket是HTML5一种新的协议(Protocol)。它实现了客户端与服务�
 {"event":"subscribe","topic":"tradeList.BTCUSDT"}
 ```
 
-## 取消订阅
+### 取消订阅
 
 可以同时取消一个或者多个Topic
 
@@ -556,18 +557,15 @@ topic格式: `user.position`
     "data": [{
       "availableQuantity": "100", 
       "avgPrice": "7778.1", 
-      "deleveragePercentile": "37", 
       "leverage": "20", 
       "liquidationPrice": "5441.0", 
       "markPrice": "8086.5", 
       "positionMargin": "0.0285", 
-      "positionValue": "0.0627", 
       "quantity": "507", 
       "realisedPnl": "0.0069", 
-      "roe": "0.0872", 
       "side": "long", 
       "symbol": "BTCUSDT", 
-      "unrealisedPnl": "0.0024",
+      "marginMode": "1",
       "createTime": "2019-05-22T03:11:22.0Z"
     }]
 }
@@ -575,23 +573,20 @@ topic格式: `user.position`
 
 返回参数
 
-| 参数名               | 参数类型 | 描述                         |
-| -------------------- | -------- | ---------------------------- |
-| availableQuantity    | string   | 可平仓数量                   |
-| averagePrice         | string   | 开仓均价                     |
-| deleveragePercentile | string   | 减仓队列，值越大也排名越靠前 |
-| leverage             | string   | 杠杆倍数                     |
-| liquidationPrice     | string   | 强平价格                     |
-| markPrice            | string   | 标记价格                     |
-| postionMargin        | string   | 仓位保证金                   |
-| positionValue        | string   | 仓位的BTC价值                |
-| quantity             | string   | 合约的持仓数量               |
-| realisedPnl          | string   | 已实现盈亏                   |
-| roe                  | string   | 回报率                       |
-| side                 | string   | 方向                         |
-| symbol               | string   | 合约名称                     |
-| unrealisedPnl        | string   | 未实现盈亏                   |
-| createTime           | string   | 仓位创建时间                 |
+| 参数名            | 参数类型 | 描述                    |
+| ----------------- | -------- | ----------------------- |
+| availableQuantity | string   | 可平仓数量              |
+| avgPrice          | string   | 开仓均价                |
+| leverage          | string   | 杠杆倍数                |
+| liquidationPrice  | string   | 强平价格                |
+| markPrice         | string   | 标记价格                |
+| postionMargin     | string   | 仓位保证金              |
+| quantity          | string   | 合约的持仓数量          |
+| realisedPnl       | string   | 已实现盈亏              |
+| side              | string   | 方向                    |
+| symbol            | string   | 合约名称                |
+| marginMode        | string   | 保证金模式  1全仓 0逐仓 |
+| createTime        | string   | 仓位创建时间            |
 
 
 
