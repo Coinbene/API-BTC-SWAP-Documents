@@ -34,7 +34,7 @@ WebSocket是HTML5一种新的协议(Protocol)。它实现了客户端与服务�
 *强烈建议开发者使用WebSocket API获取市场行情和买卖深度等信息。*
 
 .地址
-`*wss://ws-contract.coinbene.vip/openapi/ws*`
+`wss://ws-contract.coinbene.vip/openapi/ws`
 
 > * 访问地址需要具备科学上网环境
 > * 连接上ws后需主动处理服务端的`ping`检测消息,用于连接保活
