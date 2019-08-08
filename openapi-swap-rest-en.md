@@ -1456,3 +1456,4 @@ Error code | message
 10326| Limit price cannot be empty
 10329| Entrusted to deal in {0} will result in a position margin loss to the minimum maintenance position margin level Please adjust the commission price or reduce the leverage
 10332 | Margin model error
+10333 | Frequently order less than 10 sheets, disable order function for 10 minutes
