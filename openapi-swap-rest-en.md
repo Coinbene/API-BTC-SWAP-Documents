@@ -1053,7 +1053,7 @@ fee | string | handling fee
 fillQuantity | string | Volume (number of sheets)
 averagePrice | string | Average transaction price
 orderTime | string | order creation time
-status | string | Order Status(new,filled,canceled,partiallyFilled）
+status | string | Order Status(filled,canceled,partiallyFilled）
 
 
 ```
@@ -1123,6 +1123,7 @@ Name | Type | Required | Description
 beginTime | string | no | start time, millisecond timestamp
 endTime | string | no | end time, millisecond timestamp
 symbol | string | no | contract name, such as BTCUSDT
+status | string | Order Status(filled,canceled,partiallyFilled）
 latestOrderId | string | no | Order id, paging. The default is empty, returning the latest 20 data records
 
 
