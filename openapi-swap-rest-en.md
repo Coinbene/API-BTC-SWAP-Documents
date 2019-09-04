@@ -1053,7 +1053,7 @@ fee | string | handling fee
 fillQuantity | string | Volume (number of sheets)
 averagePrice | string | Average transaction price
 orderTime | string | order creation time
-status | string | Order Status(filled,canceled,partiallyFilled）
+status | string | Order Status(filled,canceled,partiallyCanceled）
 
 
 ```
@@ -1142,7 +1142,7 @@ fee | string | handling fee
 fillQuantity | string | Volume (number of sheets)
 averagePrice | string | Average transaction price
 orderTime | string | order creation time
-status | string | Order Status(new,filled,canceled,partiallyFilled）
+status | string | Order Status(new,filled,canceled,partiallyCanceled）
 
 
 ```
@@ -1280,7 +1280,7 @@ Fee | string | handling fee
 FillQuantity | string | Order Quantity (Zhang)
 averagePrice | string | Average order price
 orderTime | string | order time
-Status | string | Order status (new: pending order, filled: completed transaction, canceled: complete withdrawal, partialFilled: partial withdrawal)
+Status | string | Order status (new: pending order, filled: completed transaction, canceled: complete withdrawal, partiallyCanceled: partial withdrawal)
 
 ```
 Request:
