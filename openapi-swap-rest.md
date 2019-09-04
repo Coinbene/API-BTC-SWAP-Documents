@@ -1113,7 +1113,7 @@ fee   | string | 手续费
 filledQuantity   | string | 成交量（张）
 averagePrice   | string | 平均成交价格
 orderTime   | string | 订单创建时间
-status   | string | 订单状态(filled:完成成交,canceled:完全撤单,partiallyFilled:部分撤单）
+status   | string | 订单状态(filled:完成成交,canceled:完全撤单,partiallyCanceled:部分撤单）
 
 
 ```
@@ -1183,7 +1183,7 @@ HTTP GET/api/swap/v2/order/closedOrdersByPage
 beginTime      | string | 否 | 开始时间，毫秒级时间戳
 endTime      | string | 否 | 结束时间，毫秒级时间戳
 symbol      | string | 否 | 合约名称，如BTCUSDT
-status   | string | 订单状态(filled:完成成交,canceled:完全撤单,partiallyFilled:部分撤单）
+status   | string | 订单状态(filled:完成成交,canceled:完全撤单,partiallyCanceled:部分撤单）
 latestOrderId      | string | 否 | 订单id。默认为空，返回最新20条数据记录
 
 
