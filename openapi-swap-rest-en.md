@@ -366,7 +366,7 @@ Response:
       "high24h": "8600.0000", 
       "low24h": "242.4500", 
       "volume24h": "4994", 
-      "volume24h": "9984", 
+      "turnover": "9984", 
       "bestAskVolume": "2222", 
       "bestBidVolume": "5312"
     }, 
