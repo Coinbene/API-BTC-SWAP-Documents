@@ -340,6 +340,7 @@ markPrice | string | tag price
 high24h | string | 24h highest price
 low24h | string | 24h lowest price
 volume24h | string | 24h volume USDT
+turnover | string | 
 
 
 ```
@@ -365,6 +366,7 @@ Response:
       "high24h": "8600.0000", 
       "low24h": "242.4500", 
       "volume24h": "4994", 
+      "volume24h": "9984", 
       "bestAskVolume": "2222", 
       "bestBidVolume": "5312"
     }, 
@@ -376,6 +378,7 @@ Response:
       "high24h": "8600.0000", 
       "low24h": "242.4500", 
       "volume24h": "4994", 
+      "turnover": "4994", 
       "bestAskVolume": "1222", 
       "bestBidVolume": "56505"
     }
