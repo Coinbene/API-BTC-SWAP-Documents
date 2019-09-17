@@ -370,6 +370,7 @@ markPrice      | string | 标记价格
 high24h        | string | 24h最高价
 low24h         | string | 24h最低价
 volume24h      | string | 24h成交量USDT
+turnover      | string |  
 
 
 ```
@@ -395,6 +396,7 @@ Response:
       "high24h": "8600.0000", 
       "low24h": "242.4500", 
       "volume24h": "4994", 
+      "turnover": "9988", 
       "bestAskVolume": "2222", 
       "bestBidVolume": "5312"
     }, 
@@ -406,6 +408,7 @@ Response:
       "high24h": "8600.0000", 
       "low24h": "242.4500", 
       "volume24h": "4994", 
+      "turnover": "4994", 
       "bestAskVolume": "1222", 
       "bestBidVolume": "56505"
     }
