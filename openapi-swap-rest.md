@@ -270,6 +270,8 @@ size   | string | 否 | 深度档位，值有5、10、50、100。默认值10|
 ---------|---------|---------|
 asks   | array | 卖方深度，[档位价格，数量，该深度由几笔订单组成]|
 bids   | array | 买方深度，[档位价格，数量，该深度由几笔订单组成]|
+symbol      | string |  合约名称
+time      | string |  时间戳，国际时间
 
 
 
@@ -342,7 +344,8 @@ Response:
         "7857.0", 
         "8306", 
         "1"
-      ]
+      ],
+      "time":"2019-09-18T02:41:08.016Z"
     ]
   }
 }
@@ -371,6 +374,7 @@ high24h        | string | 24h最高价
 low24h         | string | 24h最低价
 volume24h      | string | 24h成交量USDT
 turnover      | string |  
+time      | string |  时间戳，国际时间
 
 
 ```
@@ -398,7 +402,8 @@ Response:
       "volume24h": "4994", 
       "turnover": "9988", 
       "bestAskVolume": "2222", 
-      "bestBidVolume": "5312"
+      "bestBidVolume": "5312",
+      "time":"2019-09-18T02:41:08.016Z"
     }, 
     "BTCUSDT": {
       "lastPrice": "8548.0", 
@@ -410,7 +415,8 @@ Response:
       "volume24h": "4994", 
       "turnover": "4994", 
       "bestAskVolume": "1222", 
-      "bestBidVolume": "56505"
+      "bestBidVolume": "56505",
+      "time":"2019-09-18T02:41:08.016Z"
     }
   }
 }
