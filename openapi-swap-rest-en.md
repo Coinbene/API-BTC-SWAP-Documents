@@ -240,6 +240,8 @@ Name | Type | Description |
 ---------|---------|---------|
 asks | array | seller depth, [gear price, quantity, the depth consists of several orders]|
 bid | array | buyer depth, [gear price, quantity, the depth consists of several orders]|
+symbol      | string |  contract name
+time      | string |  timestamp International time
 
 
 
@@ -313,7 +315,8 @@ Response:
         "8306", 
         "1"
       ]
-    ]
+    ],
+    "time":"2019-09-18T02:41:08.016Z"
   }
 }
 ```
@@ -341,7 +344,7 @@ high24h | string | 24h highest price
 low24h | string | 24h lowest price
 volume24h | string | 24h volume USDT
 turnover | string | 
-
+time      | string |  timestamp International time
 
 ```
 Request:
@@ -368,7 +371,8 @@ Response:
       "volume24h": "4994", 
       "turnover": "9984", 
       "bestAskVolume": "2222", 
-      "bestBidVolume": "5312"
+      "bestBidVolume": "5312",
+      "time":"2019-09-18T02:41:08.016Z"
     }, 
     "BTCUSDT": {
       "lastPrice": "8548.0", 
@@ -380,7 +384,8 @@ Response:
       "volume24h": "4994", 
       "turnover": "4994", 
       "bestAskVolume": "1222", 
-      "bestBidVolume": "56505"
+      "bestBidVolume": "56505",
+      "time":"2019-09-18T02:41:08.016Z"
     }
   }
 }
