@@ -947,7 +947,7 @@ HTTP GET/api/swap/v2/order/openOrdersByPage
 名称  | 类型  | 是否必填  | 说明
 ---------|---------|---------|---------|
 symbol      | string | 否 | 合约名称，如BTCUSDT
-latestOrderId      | string | 否 | 订单ID。默认为空，返回最新20条数据记录
+latestOrderId      | string | 否 | 订单ID。默认为空，返回最新20条数据记录，规则：第一页传空值，从第二页开始传上一页列表orderId值-1
 
 返回字段说明：
 
