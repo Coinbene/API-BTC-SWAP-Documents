@@ -1351,7 +1351,7 @@ quantity   | string | 成交数量
 ```
 Request:
 Request:
-Url: http://127.0.0.1:9320/api/swap/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
+Url: http://域名/api/swap/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
 Method: GET
 Headers: 
 	Accept: application/json
