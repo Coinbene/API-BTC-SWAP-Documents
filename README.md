@@ -1,5 +1,5 @@
 # API-SWAP-Documents
-coinbene swap openapi document v2.0
+本文档是BTC合约接口文档
 
 * [REST 中文文档](openapi-swap-rest.md) 
 * [REST English Document](openapi-swap-rest-en.md)
