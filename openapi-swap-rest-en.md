@@ -540,6 +540,62 @@ Response:
 }
 ```
 
+### Public interface - query contract information
+
+```
+Get contract information
+Speed limit rule: 3 times / 1 second
+HTTP GET /api/swap/v2/market/instruments
+```
+Request parameters: None
+
+Return field description:
+
+name | type | description
+---|---|---
+instrumentid | string | contract name
+multiplier | string | multiplier
+minamount | string | minimum opening quantity
+maxamount | string | maximum opening quantity
+minpricechange | string | minimum price change
+priceprecision | string | price precision
+
+```
+Request:
+Url: http://domain/api/swap/v2/market/instruments
+Method: GET
+Headers: 
+	Accept: application/json
+	Content-Type: application/json; charset=UTF-8
+	Cookie: locale=zh_CN
+Body: 
+preHash: 2020-01-14T07:28:57.211ZGET/api/swap/v2/market/instruments
+
+Response:
+{
+    "code":200,
+    "data":[
+        {
+            "instrumentId":"BTCUSDT",
+            "multiplier":"1",
+            "minAmount":"1",
+            "maxAmount":"10000000",
+            "minPriceChange":"0.5",
+            "pricePrecision":"1"
+        },
+        {
+            "instrumentId":"ETHUSDT",
+            "multiplier":"0.000001",
+            "minAmount":"1",
+            "maxAmount":"10000000",
+            "minPriceChange":"0.05",
+            "pricePrecision":"2"
+        }
+    ]
+}
+```
+
+
 ### Private Interface - Query Contract Account Information
 
 ```
