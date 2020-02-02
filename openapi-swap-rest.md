@@ -602,6 +602,62 @@ Response:
 }
 ```
 
+### 公共接口-查询合约信息
+
+```
+获取合约信息
+限速规则：5次/1秒
+HTTP GET /api/swap/v2/market/instruments
+```
+请求参数： 无
+
+返回字段说明：
+
+名称   | 类型  | 说明
+---|---|---
+instrumentId   | string | 合约名称
+multiplier   | string | 乘数
+minAmount   | string | 最小开仓数量
+maxAmount   | string | 最大开仓数量
+minPriceChange   | string | 最小价格变化
+pricePrecision   | string | 价格精度
+
+```
+Request:
+Url: http://域名/api/swap/v2/market/instruments
+Method: GET
+Headers: 
+	Accept: application/json
+	Content-Type: application/json; charset=UTF-8
+	Cookie: locale=zh_CN
+Body: 
+preHash: 2020-01-14T07:28:57.211ZGET/api/swap/v2/market/instruments
+
+Response:
+{
+    "code":200,
+    "data":[
+        {
+            "instrumentId":"BTCUSDT",
+            "multiplier":"1",
+            "minAmount":"1",
+            "maxAmount":"10000000",
+            "minPriceChange":"0.5",
+            "pricePrecision":"1"
+        },
+        {
+            "instrumentId":"ETHUSDT",
+            "multiplier":"0.000001",
+            "minAmount":"1",
+            "maxAmount":"10000000",
+            "minPriceChange":"0.05",
+            "pricePrecision":"2"
+        }
+    ]
+}
+```
+
+
 ### 私有接口-查询合约账户信息
 
 ```
