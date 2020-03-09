@@ -447,7 +447,7 @@ Body:
 preHash: 2019-05-21T11:16:20.521ZGET/api/swap/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
 
 Response:
-Format description:[time,open,close,high,low,volume,turnover,buyVolume,buyTurnover]
+Format description:[time,open,high,low,close,volume,turnover,buyVolume,buyTurnover]
 {
   "code": 200, 
   "data": [
