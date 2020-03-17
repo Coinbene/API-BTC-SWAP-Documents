@@ -34,12 +34,11 @@ WebSocket是HTML5一种新的协议(Protocol)。它实现了客户端与服务�
 *强烈建议开发者使用WebSocket API获取市场行情和买卖深度等信息。*
 
 .地址
-`wss://ws-contract.coinbene.vip/openapi/ws`
+`wss://ws.coinbene.vip/stream/ws`
 
 > * 访问地址需要具备科学上网环境
 > * 连接上ws后需主动处理服务端的`ping`检测消息,用于连接保活
 > * CoinBene服务器部署在美西，为最大限度地减少API访问延迟，建议您使用与美西通讯通畅的服务器
-> * API返回数据中涉及的时间格式均为`ISO8601`标准的时间格式 例: 2018-02-08T04:30:37Z
 
 ## 指令格式
 
@@ -94,11 +93,11 @@ WebSocket是HTML5一种新的协议(Protocol)。它实现了客户端与服务�
 
 ```json
 // send
-{"op":"subscribe","args":["orderBook.BTCUSDT.10","tradeList.BTCUSDT"]}
+{"op":"subscribe","args":["btc/orderBook.BTCUSDT.10","btc/tradeList.BTCUSDT"]}
 
 // response
-{"event":"subscribe","topic":"orderBook.BTCUSDT.10"}
-{"event":"subscribe","topic":"tradeList.BTCUSDT"}
+{"event":"subscribe","topic":"btc/orderBook.BTCUSDT.10"}
+{"event":"subscribe","topic":"btc/tradeList.BTCUSDT"}
 ```
 
 ### 取消订阅
@@ -115,11 +114,11 @@ WebSocket是HTML5一种新的协议(Protocol)。它实现了客户端与服务�
 
 ```json
 // send
-{"op":"unsubscribe","args":["orderBook.BTCUSDT.10","tradeList.BTCUSDT"]}
+{"op":"unsubscribe","args":["btc/orderBook.BTCUSDT.10","btc/tradeList.BTCUSDT"]}
 
 // response
-{"event":"unsubscribe","topic":"orderBook.BTCUSDT.10"}
-{"event":"unsubscribe","topic":"tradeList.BTCUSDT"}
+{"event":"unsubscribe","topic":"btc/orderBook.BTCUSDT.10"}
+{"event":"unsubscribe","topic":"btc/tradeList.BTCUSDT"}
 ```
 
 
@@ -250,18 +249,18 @@ WebSocket是HTML5一种新的协议(Protocol)。它实现了客户端与服务�
 
 | 名称       | 格式                       | 示例                 |
 | ---------- | -------------------------- | -------------------- |
-| 深度列表   | orderBook.{symbol}.{depth} | orderBook.BTCUSDT.10 |
-| 最新成交   | tradeList.{symbol}         | tradeList.BTCUSDT    |
-| Ticker信息 | ticker.{symbol}            | ticker.BTCUSDT       |
-| K线数据    | kline.{symbol}             | kline.BTCUSDT        |
+| 深度列表   | btc/orderBook.{symbol}.{depth} | btc/orderBook.BTCUSDT.10 |
+| 最新成交   | btc/tradeList.{symbol}         | btc/tradeList.BTCUSDT    |
+| Ticker信息 | btc/ticker.{symbol}            | btc/ticker.BTCUSDT       |
+| K线数据    | btc/kline.{symbol}             | btc/kline.BTCUSDT        |
 
 私有Topic(需登录)
 
 | 名称     | 格式          |
 | -------- | ------------- |
-| 用户账户 | user.account  |
-| 用户持仓 | user.position |
-| 用户交易 | user.order    |
+| 用户账户 | btc/user.account  |
+| 用户持仓 | btc/user.position |
+| 用户交易 | btc/user.order    |
 
 
 
@@ -269,10 +268,10 @@ WebSocket是HTML5一种新的协议(Protocol)。它实现了客户端与服务�
 
 #### 深度列表
 
-topic格式: `orderBook.{symbol}.{depth}`
+topic格式: `btc/orderBook.{symbol}.{depth}`
 
 *`symbol`*: 交易所支持的任一交易对
-*`depth`* : 目前支持深度5、10、50、100
+*`depth`* : 目前支持深度5、10、20、50、100
 
 订阅时将`symbol`和`depth`设置成目标值即可.
 首次返回指定深度(depth)的委托列表，后续为增量
@@ -281,67 +280,67 @@ topic格式: `orderBook.{symbol}.{depth}`
 
 ```json
 // send  获取BTCUSDT交易对10挡的深度列表
-{"op": "subscribe", "args": ["orderBook.BTCUSDT.10"]}
+{"op": "subscribe", "args": ["btc/orderBook.BTCUSDT.10"]}
 
 //response
 // 首次10挡
 {
-    "topic": "orderBook.BTCUSDT", 
+    "topic": "btc/orderBook.BTCUSDT", 
     "action": "insert",
     "data": [{
         "asks": [
-            ["5621.7", "58", "2"], 
-            ["5621.8", "125", "5"],
-            ["5621.9", "100", "9"],
-            ["5622", "84", "20"],
-            ["5623.5", "90", "12"],
-            ["5624.2", "1540", "15"],
-            ["5625.1", "300",  "20"],
-            ["5625.9", "350", "1"],
-            ["5629.3", "200", "1"],
-            ["5650", "1000", "8"]
+            ["5621.7", "58"], 
+            ["5621.8", "125"],
+            ["5621.9", "100"],
+            ["5622", "84"],
+            ["5623.5", "90"],
+            ["5624.2", "1540"],
+            ["5625.1", "300"],
+            ["5625.9", "350"],
+            ["5629.3", "200"],
+            ["5650", "1000"]
         ],
         "bids": [
-            ["5621.3", "287","8"],
-            ["5621.2", "41","1"],
-            ["5621.1", "2","1"],
-            ["5621", "26","2"],
-            ["5620.8", "194","2"],
-            ["5620", "2", "1"],
-            ["5618.8", "204","2"],
-            ["5618.4", "30", "9"],
-            ["5617.2", "2","1"],
-            ["5609.9", "100", "12"]
+            ["5621.3", "287"],
+            ["5621.2", "41"],
+            ["5621.1", "2"],
+            ["5621", "26"],
+            ["5620.8", "194"],
+            ["5620", "2"],
+            ["5618.8", "204"],
+            ["5618.4", "30"],
+            ["5617.2", "2"],
+            ["5609.9", "100"]
         ],
         "version":1,
-        "timestamp": "2019-07-04T02:21:08Z"
+        "timestamp": 1584412740809
     }]
  }
  //后续增量
 {
-    "topic": "orderBook.BTCUSDT", 
+    "topic": "btc/orderBook.BTCUSDT", 
     "action": "update", 
     "data": [{
         "asks": [
-            ["5621.7", "50", "2"],
-            ["5621.8", "0", "0"],
-            ["5621.9", "30", "5"]
+            ["5621.7", "50"],
+            ["5621.8", "0"],
+            ["5621.9", "30"]
         ],
         "bids": [
-            ["5621.3", "10","1"],
-            ["5621.2", "20","1"],
-            ["5621.1", "80","5"],
-            ["5621", "0","0"],
-            ["5620.8", "10","1"]
+            ["5621.3", "10"],
+            ["5621.2", "20"],
+            ["5621.1", "80"],
+            ["5621", "0"],
+            ["5620.8", "10"]
         ],
         "version":2,
-        "timestamp": "2019-07-04T02:21:09Z"
+        "timestamp": 1584412740809
     }]
  }
 ```
 
 > 首次`action = insert` 后续增量 `action = update`
-> 一个挂单项是一个[price，size, orderCount]的数组 例:["5621.7", "58", "2"]  5621.7为深度价格，58为此价格数量，2为此价格的订单数量
+> 一个挂单项是一个[price，size]的数组 例:["5621.7", "58"]  5621.7为深度价格，58为此价格数量
 > version  数据版本严格递增 client端可以根据version来判断数据是否连续
 
 | 参数名    | 参数类型 | 描述     |
@@ -350,7 +349,7 @@ topic格式: `orderBook.{symbol}.{depth}`
 | asks      | string   | 卖方深度 |
 | bids      | string   | 买方深度 |
 | version   | number   | 数据版本 |
-| timestamp | string   | 时间戳   |
+| timestamp | number   | 时间戳(毫秒)   |
 
 * 本地维护orderBook副本(参考)
 
@@ -362,7 +361,7 @@ topic格式: `orderBook.{symbol}.{depth}`
 
 #### 最新成交
 
-topic格式: `tradeList.{symbol}`
+topic格式: `btc/tradeList.{symbol}`
 
 *`symbol`*: 交易所支持的任一交易对
 
@@ -370,17 +369,17 @@ topic格式: `tradeList.{symbol}`
 
 ```json
 // send
-{"op": "subscribe", "args": ["tradeList.BTCUSDT"]}
+{"op": "subscribe", "args": ["btc/tradeList.BTCUSDT"]}
 
 // response
 {
-    "topic": "tradeList.BTCUSDT",
+    "topic": "btc/tradeList.BTCUSDT",
     "data": [  
       [
         "8600.0000", 
         "s", 
         "100", 
-        "2019-05-21T08:25:22.735Z"
+        1584412740809
       ]
     ]
  }
@@ -394,7 +393,7 @@ topic格式: `tradeList.{symbol}`
 | price     | string   | 成交价格                 |
 | volume    | string   | 成交数量                 |
 | side      | string   | 成交方向，s=主卖，b=主买 |
-| timestamp | string   | 成交时间                 |
+| timestamp | number   | 成交时间                 |
 
 
 
@@ -402,7 +401,7 @@ topic格式: `tradeList.{symbol}`
 
 获取平台合约的最新成交价、买一价、卖一价和24交易量
 
-topic格式: `ticker.{symbol}`
+topic格式: `btc/ticker.{symbol}`
 
 *`symbol`:* 交易所支持的任一交易对
 
@@ -410,11 +409,11 @@ topic格式: `ticker.{symbol}`
 
 ```json
 // send
-{"op": "subscribe", "args": ["ticker.BTCUSDT","ticker.ETHUSDT"]}
+{"op": "subscribe", "args": ["btc/ticker.BTCUSDT","btc/ticker.ETHUSDT"]}
 
 // response
 {
-    "topic": "ticker.BTCUSDT",
+    "topic": "btc/ticker.BTCUSDT",
     "data": [
         {
           "symbol": "BTCUSDT",
@@ -427,7 +426,7 @@ topic格式: `ticker.{symbol}`
           "high24h": "8600.0000", 
           "low24h": "242.4500", 
           "volume24h": "4994", 
-          "timestamp": "2019-05-06T06:45:56.716Z"
+          "timestamp": 1584412736365
         }
     ]
  }
@@ -452,7 +451,7 @@ topic格式: `ticker.{symbol}`
 
 获取平台合约的K线数据
 
-topic格式: `kline.{symbol}`
+topic格式: `btc/kline.{symbol}`
 
 *`symbol:`*交易所支持的任一交易对
 
@@ -460,43 +459,35 @@ topic格式: `kline.{symbol}`
 
 ```json
 // send
-{"op": "subscribe", "args": ["kline.BTCUSDT","kline.ETHUSDT"]}
+{"op": "subscribe", "args": ["btc/kline.BTCUSDT","btc/kline.ETHUSDT"]}
 
 // response
 {
-    "topic": "kline.BTCUSDT",
+    "topic": "btc/kline.BTCUSDT",
     "data": [
-        [
-          "BTCUSDT",
-          "1557428280",
-          "5794",
-          "5794",
-          "5794",
-          "5794",
-          "0",
-          "0",
-          "0",
-          "0"
-        ]
+        {
+          "c": 7513.01,
+          "h": 7513.37,
+          "l": 7510.02,
+          "o": 7510.24,
+          "m": 7512.03,
+          "v": 60.5929,
+          "t": 1578278880
+  			 }
     ]
  }
- // 格式说明 [symbol,time,open,close,high,low,volume,turnover,buyVolume,buyTurnover]
 ```
 
 返回参数
 
 | 参数名      | 参数类型 | 描述                |
 | ----------- | -------- | ------------------- |
-| symbol      | string   | 合约名称，如BTCUSDT |
-| time        | string   | 生成时间            |
-| open        | string   | 开盘价格            |
-| close       | string   | 收盘价格            |
-| high        | string   | 最高价格            |
-| low         | string   | 最低价格            |
-| volume      | string   | 成交量（张）        |
-| turnover    | string   | 交易额              |
-| buyVolume   | string   | 主买量（张）        |
-| buyTurnover | string   | 主买额              |
+| c      | number   | 收盘价格            |
+| h        | number   | 最高价格            |
+| l        | number   | 最低价格            |
+| o        | number   | 开盘价格            |
+| v      | number   | 成交量（张）        |
+| t        | number   | 时间戳            |
 
 
 
@@ -508,17 +499,17 @@ topic格式: `kline.{symbol}`
 
 获取账户信息，需先登录
 
-topic格式: `user.account`
+topic格式: `btc/user.account`
 
 示例
 
 ```json
 // send
-{"op": "subscribe", "args": ["user.account"]}
+{"op": "subscribe", "args": ["btc/user.account"]}
 
 // response
 {
-    "topic": "user.account",
+    "topic": "btc/user.account",
     "data": [{
         "asset": "BTC",
         "availableBalance": "20.3859", 
@@ -543,17 +534,17 @@ topic格式: `user.account`
 #### 用户持仓
 
 获取用户持仓信息，需先登录
-topic格式: `user.position`
+topic格式: `btc/user.position`
 
 示例
 
 ```json
 // send
-{"op": "subscribe", "args": ["user.position"]}
+{"op": "subscribe", "args": ["btc/user.position"]}
 
 // response
 {
-    "topic": "user.position",
+    "topic": "btc/user.position",
     "data": [{
       "availableQuantity": "100", 
       "avgPrice": "7778.1", 
@@ -593,13 +584,13 @@ topic格式: `user.position`
 #### 用户交易
 
 获取用户交易信息，需先登录
-topic格式: `user.order`
+topic格式: `btc/user.order`
 
 示例
 
 ```json
 // send
-{"op": "subscribe", "args": ["user.order"]}
+{"op": "subscribe", "args": ["btc/user.order"]}
 
 // response
 {
