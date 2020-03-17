@@ -33,7 +33,7 @@ Request header is small in size (around 2 bytes) during communication Since ther
 
 The connection will break automatically when a network problem occurs
 
-url: *wss://ws-contract.coinbene.vip/openapi/ws*
+url: *wss://ws.coinbene.vip/stream/ws*
 
 ## Command Format
 
@@ -90,11 +90,11 @@ Example:
 
 ```json
 // send
-{"op":"subscribe","args":["orderBook.BTCUSDT.10","tradeList.BTCUSDT"]}
+{"op":"subscribe","args":["btc/orderBook.BTCUSDT.10","btc/tradeList.BTCUSDT"]}
 
 // response
-{"event":"subscribe","topic":"orderBook.BTCUSDT.10"}
-{"event":"subscribe","topic":"tradeList.BTCUSDT"}
+{"event":"subscribe","topic":"btc/orderBook.BTCUSDT.10"}
+{"event":"subscribe","topic":"btc/tradeList.BTCUSDT"}
 ```
 
 ### Unsubscription
@@ -111,11 +111,11 @@ Example:
 
 ```json
 // send
-{"op":"unsubscribe","args":["orderBook.BTCUSDT.10","tradeList.BTCUSDT"]}
+{"op":"unsubscribe","args":["btc/orderBook.BTCUSDT.10","btc/tradeList.BTCUSDT"]}
 
 // response
-{"event":"unsubscribe","topic":"orderBook.BTCUSDT.10"}
-{"event":"unsubscribe","topic":"tradeList.BTCUSDT"}
+{"event":"unsubscribe","topic":"btc/orderBook.BTCUSDT.10"}
+{"event":"unsubscribe","topic":"btc/tradeList.BTCUSDT"}
 ```
 
 
@@ -245,18 +245,18 @@ Public topic list (don't require login)
 
 | Description             | Format                     | Example              |
 | ----------------------- | -------------------------- | -------------------- |
-| depth information       | orderBook.{symbol}.{depth} | orderBook.BTCUSDT.10 |
-| trade information       | tradeList.{symbol}         | tradeList.BTCUSDT    |
-| ticker information      | ticker.{symbol}            | ticker.BTCUSDT       |
-| 1mins kline information | kline.{symbol}             | kline.BTCUSDT        |
+| depth information       | btc/orderBook.{symbol}.{depth} | btc/orderBook.BTCUSDT.10 |
+| trade information       | btc/tradeList.{symbol}         | btc/tradeList.BTCUSDT    |
+| ticker information      | btc/ticker.{symbol}            | btc/ticker.BTCUSDT       |
+| 1mins kline information | btc/kline.{symbol}             | btc/kline.BTCUSDT        |
 
 Prive topic list (require login)
 
 | Description                 | Name          |
 | --------------------------- | ------------- |
-| user's account information  | user.account  |
-| user's position information | user.position |
-| user's order information    | user.order    |
+| user's account information  | btc/user.account  |
+| user's position information | btc/user.position |
+| user's order information    | btc/user.order    |
 
 
 
@@ -264,7 +264,7 @@ Prive topic list (require login)
 
 #### OrderBook
 
-Format: `orderBook.{symbol}.{depth}`
+Format: `btc/orderBook.{symbol}.{depth}`
 
 *`symbol`*: contract name
 *`depth`* : support 5、10、50、100
@@ -273,67 +273,67 @@ Example:
 
 ```json
 // send 
-{"op": "subscribe", "args": ["orderBook.BTCUSDT.10"]}
+{"op": "subscribe", "args": ["btc/orderBook.BTCUSDT.10"]}
 
 //response
 // full data
 {
-    "topic": "orderBook.BTCUSDT", 
+    "topic": "btc/orderBook.BTCUSDT", 
     "action": "insert",
     "data": [{
         "asks": [
-            ["5621.7", "58", "2"], 
-            ["5621.8", "125", "5"],
-            ["5621.9", "100", "9"],
-            ["5622", "84", "20"],
-            ["5623.5", "90", "12"],
-            ["5624.2", "1540", "15"],
-            ["5625.1", "300",  "20"],
-            ["5625.9", "350", "1"],
-            ["5629.3", "200", "1"],
-            ["5650", "1000", "8"]
+            ["5621.7", "58"], 
+            ["5621.8", "125"],
+            ["5621.9", "100"],
+            ["5622", "84"],
+            ["5623.5", "90"],
+            ["5624.2", "1540"],
+            ["5625.1", "300"],
+            ["5625.9", "350"],
+            ["5629.3", "200"],
+            ["5650", "1000"]
         ],
         "bids": [
-            ["5621.3", "287","8"],
-            ["5621.2", "41","1"],
-            ["5621.1", "2","1"],
-            ["5621", "26","2"],
-            ["5620.8", "194","2"],
-            ["5620", "2", "1"],
-            ["5618.8", "204","2"],
-            ["5618.4", "30", "9"],
-            ["5617.2", "2","1"],
-            ["5609.9", "100", "12"]
+            ["5621.3", "287"],
+            ["5621.2", "41"],
+            ["5621.1", "2"],
+            ["5621", "26"],
+            ["5620.8", "194"],
+            ["5620", "2"],
+            ["5618.8", "204"],
+            ["5618.4", "30"],
+            ["5617.2", "2"],
+            ["5609.9", "100"]
         ],
         "version":1,
-        "timestamp": "2019-07-04T02:21:08Z"
+        "timestamp": 1584412740809
     }]
  }
  // incremental data
 {
-    "topic": "orderBook.BTCUSDT", 
+    "topic": "btc/orderBook.BTCUSDT", 
     "action": "update", 
     "data": [{
         "asks": [
-            ["5621.7", "50", "2"],
-            ["5621.8", "0", "0"],
-            ["5621.9", "30", "5"]
+            ["5621.7", "50"],
+            ["5621.8", "0"],
+            ["5621.9", "30"]
         ],
         "bids": [
-            ["5621.3", "10","1"],
-            ["5621.2", "20","1"],
-            ["5621.1", "80","5"],
-            ["5621", "0","0"],
-            ["5620.8", "10","1"]
+            ["5621.3", "10"],
+            ["5621.2", "20"],
+            ["5621.1", "80"],
+            ["5621", "0"],
+            ["5620.8", "10"]
         ],
         "version":2,
-        "timestamp": "2019-07-04T02:21:09Z"
+        "timestamp": 1584412740809
     }]
  }
 ```
 
 > Full data `action = insert`   incremental data `action = update`
-> ["5621.3", "10","1"] [String,String,String] 5621.3 is the price, 10 is the quantity of the price, 1 is the number of orders of the price.
+> ["5621.3", "10"] [String,String] 5621.3 is the price, 10 is the quantity of the price.
 > version   The data version is strictly incremented. The client can judge whether the data is continuous according to the version.
 
 | Parameter | Parameter Type | Description       |
@@ -354,23 +354,23 @@ Example:
 
 #### Trade List
 
-topic format: `tradeList.{symbol}`
+topic format: `btc/tradeList.{symbol}`
 
 Example
 
 ```json
 // send
-{"op": "subscribe", "args": ["tradeList.BTCUSDT"]}
+{"op": "subscribe", "args": ["btc/tradeList.BTCUSDT"]}
 
 // response
 {
-    "topic": "tradeList.BTCUSDT",
+    "topic": "btc/tradeList.BTCUSDT",
     "data": [  
       [
         "8600.0000", 
         "s", 
         "100", 
-        "2019-05-21T08:25:22.735Z"
+        1584412740809
       ]
     ]
  }
@@ -384,7 +384,7 @@ Example
 | price     | string         | Filled price                            |
 | quantity  | string         | Filled quantity                         |
 | side      | string         | Filled side (b/s)    s: taker sell base |
-| timestamp | string         | Filled time                             |
+| timestamp | number         | Filled time                             |
 
 
 
@@ -392,17 +392,17 @@ Example
 
 To capture the latest traded price, best-bid price, best-ask price, and 24-hour trading volume of  contracts on the platform.
 
-topic format: `ticker.{symbol}`
+topic format: `btc/ticker.{symbol}`
 
 Example
 
 ```json
 // send
-{"op": "subscribe", "args": ["ticker.BTCUSDT","ticker.ETHUSDT"]}
+{"op": "subscribe", "args": ["btc/ticker.BTCUSDT","btc/ticker.ETHUSDT"]}
 
 // response
 {
-    "topic": "ticker.BTCUSDT",
+    "topic": "btc/ticker.BTCUSDT",
     "data": [
         {
           "symbol": "BTCUSDT",
@@ -415,7 +415,7 @@ Example
           "high24h": "8600.0000", 
           "low24h": "242.4500", 
           "volume24h": "4994", 
-          "timestamp": "2019-05-06T06:45:56.716Z"
+          "timestamp": 1584412736365
         }
     ]
  }
@@ -440,49 +440,41 @@ Example
 
 1mins kline information
 
-topic format: `kline.{symbol}`
+topic format: `btc/kline.{symbol}`
 
 Example:
 
 ```json
 // send
-{"op": "subscribe", "args": ["kline.BTCUSDT","kline.ETHUSDT"]}
+{"op": "subscribe", "args": ["btc/kline.BTCUSDT","btc/kline.ETHUSDT"]}
 
 // response
 {
-    "topic": "kline.BTCUSDT",
+    "topic": "btc/kline.BTCUSDT",
     "data": [
-        [
-          "BTCUSDT",
-          "1557428280",
-          "5794",
-          "5794",
-          "5794",
-          "5794",
-          "0",
-          "0",
-          "0",
-          "0"
-        ]
+        {
+          "c": 7513.01,
+          "h": 7513.37,
+          "l": 7510.02,
+          "o": 7510.24,
+          "m": 7512.03,
+          "v": 60.5929,
+          "t": 1578278880
+        }
     ]
  }
-//array [symbol,time,open,close,high,low,volume,turnover,buyVolume,buyTurnover]
 ```
 
 
 
 | Parameter   | Parameter Type | Description                            |
 | ----------- | -------------- | -------------------------------------- |
-| symbol      | string         | Contract name                          |
-| time        | string         | Create Time                            |
-| open        | string         | Open price                             |
-| close       | string         | Close price                            |
-| high        | string         | Highest price                          |
-| low         | string         | Lowest price                           |
-| volume      | string         | Trading quantity                       |
-| turnover    | string         | The trading volume in a specific token |
-| buyVolume   | string         | Taker buy base trading quantity        |
-| buyTurnover | string         | Taker buy base trading volume          |
+| c        | number   | Close price          |
+| h        | number   | Highest price        |
+| l        | number   | Lowest price         |
+| o        | number   | Open price           |
+| v        | number   | Trading quantity     |
+| t        | number   | Create time          |
 
 
 
@@ -494,17 +486,17 @@ When  subscribe following topics, users need to log in first.
 
 Get the user's account information , require login.
 
-topic name: `user.account`
+topic name: `btc/user.account`
 
 Example:
 
 ```json
 // send
-{"op": "subscribe", "args": ["user.account"]}
+{"op": "subscribe", "args": ["btc/user.account"]}
 
 // response
 {
-    "topic": "user.account",
+    "topic": "btc/user.account",
     "data": [{
         "asset": "BTC",
         "availableBalance": "20.3859", 
@@ -529,17 +521,17 @@ Example:
 #### User Position
 
 Get the information of holding positions of a contract. require login
-topic name: `user.position`
+topic name: `btc/user.position`
 
 Example:
 
 ```json
 // send
-{"op": "subscribe", "args": ["user.position"]}
+{"op": "subscribe", "args": ["btc/user.position"]}
 
 // response
 {
-    "topic": "user.position",
+    "topic": "btc/user.position",
     "data": [{
       "availableQuantity": "100", 
       "avgPrice": "7778.1", 
@@ -579,17 +571,17 @@ Example:
 #### User Order
 
 Get user's order information , require login
-Name: `user.order`
+Name: `btc/user.order`
 
 Example:
 
 ```json
 // send
-{"op": "subscribe", "args": ["user.order"]}
+{"op": "subscribe", "args": ["btc/user.order"]}
 
 // response
 {
-    "topic": "user.order",
+    "topic": "btc/user.order",
     "data": [{
       "orderId": "580721369818955776", 
       "direction": "openLong", 
