@@ -272,7 +272,7 @@ size   | string | 否 | 深度档位，值有5、10、50、100。默认值10|
 asks   | array | 卖方深度，[档位价格，数量，该深度由几笔订单组成]|
 bids   | array | 买方深度，[档位价格，数量，该深度由几笔订单组成]|
 symbol      | string |  合约名称
-time      | string |  时间戳，国际时间
+timestamp      | string |  时间戳，国际时间
 
 
 
@@ -347,7 +347,7 @@ Response:
         "1"
       ]
     ],
-    "time":"2019-09-18T02:41:08.016Z"
+    "timestamp":"2019-09-18T02:41:08.016Z"
   }
 }
 ```
@@ -451,7 +451,7 @@ resolution的值只能取["1", "3", "5", "15", "30",
 
 名称   | 类型  | 说明
 ---------|---------|---------|
-time   | string | 生成时间
+timestamp   | string | 生成时间
 open   | string | 开盘价格
 close   | string | 收盘价格
 high   | string | 最高价格
@@ -474,12 +474,12 @@ Body:
 preHash: 2019-05-21T11:16:20.521ZGET/api/swap/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
 
 Response:
-格式说明:[time,open,high,low,close,volume,turnover,buyVolume,buyTurnover]
+格式说明:[timestamp,open,high,low,close,volume,turnover,buyVolume,buyTurnover]
 {
   "code": 200, 
   "data": [
     [
-      "1557428280", 
+      "2019-09-18T02:41:08.016Z", 
       "5794", 
       "5794", 
       "5794", 
@@ -490,7 +490,7 @@ Response:
       "0"
     ], 
     [
-      "1557426180", 
+      "2019-09-18T02:41:08.016Z", 
       "5794", 
       "5794", 
       "5794", 
@@ -501,7 +501,7 @@ Response:
       "0"
     ], 
     [
-      "1557427440", 
+      "2019-09-18T02:41:08.016Z", 
       "5794", 
       "5794", 
       "5794", 
@@ -535,7 +535,7 @@ limit  | string | 否 | 返回记录数，默认10，最大100
 price   | string | 成交价格
 side   | string | 成交方向，s=主卖，b=主买
 volume   | string | 成交量（张）
-time   | string | 成交时间
+timestamp   | string | 国际时间 成交时间
 
 
 ```
